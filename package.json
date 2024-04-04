@@ -1,0 +1,32 @@
+{
+  "name": "max-patch-visualizer",
+  "version": "1.0.0",
+  "description": "Web utility for visualizing and sharing max msp patches by parsing it from its JSON form.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacklion710/max-patch-visualizer.git"
+  },
+  "keywords": [
+    "max",
+    "msp",
+    "dsp",
+    "visualizer",
+    "convenience",
+    "utility",
+    "web-app"
+  ],
+  "author": "Jacob Leone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacklion710/max-patch-visualizer/issues"
+  },
+  "homepage": "https://github.com/jacklion710/max-patch-visualizer#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
