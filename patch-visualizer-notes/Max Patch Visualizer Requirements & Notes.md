@@ -340,17 +340,18 @@ In the image above we connect the outlet of `live.dial` (which sends lets users 
 ```
 
 Theres not much we haven't already discussed going on in the JSON structure above. Biggest difference being the fact that now there are a handful of additional objects and patchlines. If you look closely at the patchlines and follow along with the id values and visually inspect the screenshot you can see that it tracks. Notice the `order` attribute though? This informs us of what order we will be sending out data from two patch cables that spawn from the same source. This is another attribute that we will not be using for our use case but can come in handy for debugging as often it is tricky to determine the order of operations in Max. A good rule of thumb is that messages flow in order from rightmost outlets to left. *See linked resource from earlier on data flow for more info*.
+
 ### Nested Subpatchers
 
-Sometimes we will encounter nested structures in a max patch. The most basic kind is the `subpatcher` aka `p`, an object which encapsulates portions of a patch. There are other similar ones, the closest relative being `bpatcher`, a subpatcher which a see through window for encapsulating UI components as opposed to raw objects. There are also `poly~` ,`fft~`, `~rnbo` and more but these complicate things so for now we don't care about them. 
+Sometimes we will encounter nested structures in a max patch. The most basic kind is the `subpatcher` aka `p`, an object which encapsulates portions of a patch. There are other similar ones, the closest relative being `bpatcher`, a subpatcher which features a see through window for encapsulating UI components as opposed to simply raw objects. There are also `poly~`, `fft~`, `~rnbo` and more but these complicate things so for now we don't care about them. 
 
 ![!\[\[subpatcher.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/subpatcher.png)
 
-In this example, we have a simple subpatcher `p` called *subpatcher* which contains a single `cycle~` object inside. Below we can see the `patcher` field which contains more information about the patch including its enclosed JSON subpatch objects and their connections. Since we're only rendering the `p` object and its text we don't care about the contents of `patcher` for now although it is important to still note the `numinlet` and `numoutlet` attributes as subpatchers can have a varied number of inlets and outlets depending on the users design. There are generally a few objects whose behavior and 'shapes' are versatile.
+In this example, we have a simple subpatcher `p` called *subpatcher* which contains a single `cycle~` object inside. Below we can see the `patcher` field which contains more information about the patch including its enclosed JSON subpatch objects and their connections. Since we're only rendering the `p` object and its text we don't care about the contents of `patcher` for now. It is worth checking the `numinlet` and `numoutlet` attributes because subpatchers can have a varied number of inlets and outlets for connecting encapsulated patches with their parent patches depending on the users design. There are a handful of objects whose behavior, display and expected inputs are versatile.
 
 ### Subpatchers Within Subpatchers
 
-Subpatchers may be many layers deep. Just for a crazy example I provided here the JSON for a subpatcher with several layers of subpatcher nesting. See if you can spot the innermost object and its text!
+Subpatchers may be many layers deep Here is an example of JSON for a subpatcher with several layers of subpatcher nesting. See if you can spot the innermost object and its text!
 
 ```json
 {
@@ -562,7 +563,7 @@ Subpatchers may be many layers deep. Just for a crazy example I provided here th
 	"classnamespace" : "box"
 }
 ```
-## Implementation
+## Implementation in Javascript
 
 Now, let's outline the general approach for programming the web visualizer:
 
@@ -593,3 +594,11 @@ Now, let's outline the general approach for programming the web visualizer:
     - Create test cases with various patch structures to ensure accurate parsing and visualization.
     - Handle potential errors gracefully, such as missing or malformed JSON data.
     - Implement error logging and user-friendly error messages for debugging purposes.
+
+### Other Destinations
+
+It may be helpful for the max discord community to be able to simply copy and paste patches directly into discord using commands like `/patch {PATCH_JSON}` to dynamically share patches on the fly. Although screenshots are convenitent alternatives to JSON, they do not contain the patch itself and therefore they do not allow for easy transmission of patches. A visualizer tool that both displays the graph network of objects as well as carries the JSON data offers a superior way of sharing patches if it can be bundled into a user friendly bot for discord. This may be a worthwhile pursuit for a future version if enough interest is shown.
+
+## Contributions
+
+Currently I am working on this independantly as a personal project for [boot.dev](https://boot.dev). Once I have fulfilled the requirements for the project on my own and have obtained an MVP I will open things up for open source contributions.
