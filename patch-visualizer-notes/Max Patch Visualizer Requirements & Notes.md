@@ -10,7 +10,7 @@ Even though Max is a visual node based patcher environment when a section of a p
 
 ### Single Object in JSON
 
-				![!\[\[./single-cycle~.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/single-cycle~.png)
+![!\[\[./single-cycle~.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/single-cycle~.png)
 
 In max we have access to a vast library for DSP and realtime control systems. One of the most basic things you can do with digital audio is to create a sine wave. In max we have the `cycle~` object for generating sine wave signals. Objects with the `~` are denoted as **signal** objects which means it is an object that deals with audio.
 
@@ -54,7 +54,7 @@ The `appversion` contains metadata about the system and version used. Its not im
 
 ### Simple Patch Connection in JSON
 
-				![!\[\[simple-connection.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/simple-connection.png)
+![!\[\[simple-connection.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/simple-connection.png)
 
 If we create a second object and make a single patch connection from one object to another, we can observe some changes in our JSON. The `dac~` object uses your computers digital audio converter if available to play audio aloud.
 
@@ -125,7 +125,7 @@ Any respectable max patch will consist of extensive patch connected. Essentially
 
 Max has a special category of objects for UI and interactivity. We usually just call them widgets. We have many different kinds at our disposal but some common ones include `slider`, `number`, `button` and `live.dial` all pictured below.
 
-				![!\[\[widgets.png\]\]](https://github.com/jacklion710/max-patch-visualizer/blob/main/patch-visualizer-notes/widgets.png)
+![!\[\[widgets.png\]\]](https://github.com/jacklion710/max-patch-visualizer/blob/main/patch-visualizer-notes/widgets.png)
 
 These objects don't look that different from our usual JSON representation save for a few minor differences which we'll now go over.
 
@@ -211,7 +211,7 @@ As you can see, the `maxclass` attribute now contains the actual name of the wid
 
 Now we are ready to see a patch we might be more likely to encounter in the wild. Although not as extensive as most devices in production, it is a snippet that represents a realistic scenario with multiple objects and patch connections.
 
-				![!\[\[widget+complex patch.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/widget%2Bcomplex%20patch.png)
+![!\[\[widget+complex patch.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/widget%2Bcomplex%20patch.png)
 
 In the image above we connect the outlet of `live.dial` (which sends lets users select a number to output with a dial) to the left inlet of a `+` object with an argument of **50** and the left inlet of a `cycle~` object as well. The outlet of `+` connects to the left inlet of a second `cycle~` object. Both `cycle~` objects finally connect to each the left and right inlets of `~dac` respectively. It's just a shoddy pitchable oscillator where the right speaker always plays a sine wave 50 hz above the left as determined by the dials value. Its not a very realistic patch in a sound designer sense but is valid and realistic enough that it will help us gain insight into the JSON structure of a patch that features multiple objects and connections.
 
@@ -344,7 +344,7 @@ Theres not much we haven't already discussed going on in the JSON structure abov
 
 Sometimes we will encounter nested structures in a max patch. The most basic kind is the `subpatcher` aka `p`, an object which encapsulates portions of a patch. There are other similar ones, the closest relative being `bpatcher`, a subpatcher which a see through window for encapsulating UI components as opposed to raw objects. There are also `poly~` ,`fft~`, `~rnbo` and more but these complicate things so for now we don't care about them. 
 
-				![!\[\[subpatcher.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/subpatcher.png)
+![!\[\[subpatcher.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/subpatcher.png)
 
 In this example, we have a simple subpatcher `p` called *subpatcher* which contains a single `cycle~` object inside. Below we can see the `patcher` field which contains more information about the patch including its enclosed JSON subpatch objects and their connections. Since we're only rendering the `p` object and its text we don't care about the contents of `patcher` for now although it is important to still note the `numinlet` and `numoutlet` attributes as subpatchers can have a varied number of inlets and outlets depending on the users design. There are generally a few objects whose behavior and 'shapes' are versatile.
 
