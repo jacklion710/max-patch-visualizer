@@ -1,2 +1,5 @@
 # Dependencies
 node_modules/
+
+# Obsidian markdown editor dependencies
+.obsidian/
