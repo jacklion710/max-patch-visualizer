@@ -9,7 +9,7 @@ Even though Max is a visual node based patcher environment when a section of a p
 
 ### Single Object in JSON
 
-![[./single-cycle~.png]]
+![!\[\[./single-cycle~.png\]\]](https://raw.githubusercontent.com/jacklion710/max-patch-visualizer/main/patch-visualizer-notes/single-cycle~.png)
 
 In max we have access to a vast library for DSP and realtime control systems. One of the most basic things you can do with digital audio is to create a sine wave. In max we have the `cycle~` object for generating sine wave signals. Objects with the `~` are denoted as **signal** objects which means it is an object that deals with audio.
 
